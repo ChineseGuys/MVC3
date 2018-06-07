@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
     <meta charset="utf-8" />
@@ -9,6 +9,192 @@
 </head>
 
 <body>
-    @RenderBody()
+    <head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="/Content/jquery-easyui-1.5.5.2/themes/default/easyui.css" rel="stylesheet" />
+    <link href="/Content/jquery-easyui-1.5.5.2/themes/icon.css" rel="stylesheet" />
+    <link href="/Content/admin.css" rel="stylesheet" />
+    <script src="/Content/jquery-easyui-1.5.5.2/jquery.min.js"></script>
+    <script src="/Content/jquery-easyui-1.5.5.2/jquery.easyui.min.js"></script>
+    <script src="/Content/common.js"></script>
+</head>
+
+<body class="easyui-layout" data-options="fit:true,scroll:'no'">
+    <div data-options="region:'north',border:false" style="height: 74px; background: #2596ea; padding: 10px">
+        TeamWorkProject
+    </div>
+    <div data-options="region:'west',split:true,title:'导航菜单'" style="width: 170px;">
+        <div class="easyui-accordion" data-options="fit:true,border:false">
+            <div title="用户管理" data-options="selected:true">
+                <div style="margin: 5px">
+                    <ul class="tree easyui-tree" data-options="animate:true,lines:true">
+                        <li data-options="iconCls:'icon-group'">
+                            <a href="/User"><span>用户设置</span></a>
+                            @*<ul>
+                                <li data-options="iconCls:'icon-group_add'">
+                                    <span>测试表格</span>
+                                </li>
+                                <li data-options="iconCls:'icon-group_delete'">
+                                    <span>test2</span>
+                                </li>
+                                <li data-options="iconCls:'icon-group_edit'">
+                                    <span>test3</span>
+                                </li>
+                            </ul>*@
+                        </li>
+                        @*<li data-options="state:'closed',iconCls:'icon-joystick'">
+                            <span>系统设置</span>
+                            <ul>
+                                <li data-options="iconCls:'icon-joystick_add'">
+                                    <span>test4</span>
+                                </li>
+                            </ul>
+                        </li>*@
+                    </ul>
+                </div>
+            </div>
+            <div title="角色管理" style="padding: 10px;">
+                <div style="margin: 5px">
+                    <ul class="tree easyui-tree" data-options="animate:true,lines:true">
+                        <li data-options="iconCls:'icon-group'">
+                            <a href="javascript:void(0)"  data-options="plain:true,iconCls:'icon-add'" onclick="addTab()"><span>角色设置</span></a>
+                            @*<ul>
+                                <li data-options="iconCls:'icon-group_add'">
+                                    <span>测试表格</span>
+                                </li>
+                                <li data-options="iconCls:'icon-group_delete'">
+                                    <span>test2</span>
+                                </li>
+                                <li data-options="iconCls:'icon-group_edit'">
+                                    <span>test3</span>
+                                </li>
+                            </ul>*@
+                        </li>
+                        @*<li data-options="state:'closed',iconCls:'icon-joystick'">
+                            <span>系统设置</span>
+                            <ul>
+                                <li data-options="iconCls:'icon-joystick_add'">
+                                    <span>test4</span>
+                                </li>
+                            </ul>
+                        </li>*@
+                    </ul>
+                </div>
+            </div>
+            <div title="设备管理" style="padding: 10px">
+                <div style="margin: 5px">
+                    <ul class="tree easyui-tree" data-options="animate:true,lines:true">
+                        <li data-options="iconCls:'icon-group'">
+                            <a href="/Device"><span>查看设备</span></a>
+                            @*<ul>
+                                <li data-options="iconCls:'icon-group_add'">
+                                    <span>测试表格</span>
+                                </li>
+                                <li data-options="iconCls:'icon-group_delete'">
+                                    <span>test2</span>
+                                </li>
+                                <li data-options="iconCls:'icon-group_edit'">
+                                    <span>test3</span>
+                                </li>
+                            </ul>*@
+                        </li>
+                        @*<li data-options="state:'closed',iconCls:'icon-joystick'">
+                            <span>系统设置</span>
+                            <ul>
+                                <li data-options="iconCls:'icon-joystick_add'">
+                                    <span>test4</span>
+                                </li>
+                            </ul>
+                        </li>*@
+                    </ul>
+                </div>
+            </div>
+            <div title="基础资料管理" style="padding: 10px">
+                <div style="margin: 5px">
+                    <ul class="tree easyui-tree" data-options="animate:true,lines:true">
+                        <li data-options="iconCls:'icon-group'">
+                            <a href="/BasicInfo"><span>查看资料</span></a>
+                            @*<ul>
+                                <li data-options="iconCls:'icon-group_add'">
+                                    <span>测试表格</span>
+                                </li>
+                                <li data-options="iconCls:'icon-group_delete'">
+                                    <span>test2</span>
+                                </li>
+                                <li data-options="iconCls:'icon-group_edit'">
+                                    <span>test3</span>
+                                </li>
+                            </ul>*@
+                        </li>
+                        @*<li data-options="state:'closed',iconCls:'icon-joystick'">
+                            <span>系统设置</span>
+                            <ul>
+                                <li data-options="iconCls:'icon-joystick_add'">
+                                    <span>test4</span>
+                                </li>
+                            </ul>
+                        </li>*@
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-options="region:'south',border:false" style="height: 23px;">
+        <div class="footer">TeamWorkProject</div>
+    </div>
+    <div data-options="region:'center'">
+        <div id="tabs" class="easyui-tabs" data-options="tools:'#tab-tools',fit:true,border:false" >
+            <div title="主页" data-options="iconCls:'icon-house'" style="padding: 10px;">
+                    @RenderBody()
+            </div>
+        </div>
+        
+        
+    </div>
+       
+    <div id="tab-tools">
+        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'" onclick="addTab()"></a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-remove'" onclick="removeTab()"></a>
+    </div>
+</body>
+
 </body>
 </html>
+<script type="text/javascript">
+    var index = 0;
+    function addTab(subtitle, url, icon) {
+        index++;
+        console.log(subtitle, url, icon);
+        if ($('#tabs').tabs('exists', subtitle)) {
+            $('#tabs').tabs('add', {
+                title: subtitle,
+                content: createFrame('http://www.baidu.com/'),
+                closable: true,
+                icon: ''
+            });
+        } else {
+            $('#tabs').tabs('select', subtitle);
+            $('#mm-tabupdate').click();
+        }
+        tabClose();
+    }
+    function tabClose() {
+        /*双击关闭TAB选项卡*/
+        $(".tabs-inner").dblclick(function () {
+            var subtitle = $(this).children(".tabs-closable").text();
+            $('#tabs').tabs('close', subtitle);
+        })
+        /*为选项卡绑定右键*/
+        $(".tabs-inner").bind('contextmenu', function (e) {
+            $('#mm').menu('show', {
+                left: e.pageX,
+                top: e.pageY
+            });
+            var subtitle = $(this).children(".tabs-closable").text();
+            $('#mm').data("currtab", subtitle);
+            $('#tabs').tabs('select', subtitle);
+            return false;
+        });
+    }
+</script>
