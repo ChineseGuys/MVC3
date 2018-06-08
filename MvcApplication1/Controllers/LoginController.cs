@@ -26,7 +26,7 @@ namespace MvcApplication1.Controllers
 
             if (User!=null)
             {
-                return RedirectToRoute("/home");
+                Response.Redirect("/home/index");
                 
             }
             return View();
