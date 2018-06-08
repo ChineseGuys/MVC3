@@ -23,10 +23,20 @@ namespace MvcApplication1.Controllers
         public ActionResult Login(User user) 
         {
             string pwd = SecurityHelper.str2md5(user.Password);
+<<<<<<< HEAD
             
             var rv = new { success = true };
             return Json(rv, JsonRequestBehavior.AllowGet);
             
+=======
+
+            if (User!=null)
+            {
+                Response.Redirect("/home/index");
+                
+            }
+            return View();
+>>>>>>> 8cc72c6f01ffcaa8bc0b1ba3c4954960f37205a1
 
         }
 
