@@ -26,7 +26,7 @@
                 <div style="margin: 5px">
                     <ul class="tree easyui-tree" data-options="animate:true,lines:true">
                         <li data-options="iconCls:'icon-group'">
-                            <a href="/User"><span>用户设置</span></a>
+                            <a href="javascript:void(0)"  data-options="plain:true,iconCls:'icon-add'" onclick="addTab('用户设置','/user')"><span>用户设置</span></a>
                             @*<ul>
                                 <li data-options="iconCls:'icon-group_add'">
                                     <span>测试表格</span>
@@ -54,55 +54,17 @@
                 <div style="margin: 5px">
                     <ul class="tree easyui-tree" data-options="animate:true,lines:true">
                         <li data-options="iconCls:'icon-group'">
-                            <a href="javascript:void(0)"  data-options="plain:true,iconCls:'icon-add'" onclick="addTab()"><span>角色设置</span></a>
-                            @*<ul>
-                                <li data-options="iconCls:'icon-group_add'">
-                                    <span>测试表格</span>
-                                </li>
-                                <li data-options="iconCls:'icon-group_delete'">
-                                    <span>test2</span>
-                                </li>
-                                <li data-options="iconCls:'icon-group_edit'">
-                                    <span>test3</span>
-                                </li>
-                            </ul>*@
+                            <a href="javascript:void(0)"  data-options="plain:true,iconCls:'icon-add'" onclick="addTab('角色设置','/role')"><span>角色设置</span></a>
                         </li>
-                        @*<li data-options="state:'closed',iconCls:'icon-joystick'">
-                            <span>系统设置</span>
-                            <ul>
-                                <li data-options="iconCls:'icon-joystick_add'">
-                                    <span>test4</span>
-                                </li>
-                            </ul>
-                        </li>*@
                     </ul>
                 </div>
             </div>
-            <div title="设备管理" style="padding: 10px">
+            <div title="权限管理" style="padding: 10px">
                 <div style="margin: 5px">
                     <ul class="tree easyui-tree" data-options="animate:true,lines:true">
                         <li data-options="iconCls:'icon-group'">
-                            <a href="/Device"><span>查看设备</span></a>
-                            @*<ul>
-                                <li data-options="iconCls:'icon-group_add'">
-                                    <span>测试表格</span>
-                                </li>
-                                <li data-options="iconCls:'icon-group_delete'">
-                                    <span>test2</span>
-                                </li>
-                                <li data-options="iconCls:'icon-group_edit'">
-                                    <span>test3</span>
-                                </li>
-                            </ul>*@
+                            <a href="javascript:void(0)"  data-options="plain:true,iconCls:'icon-add'" onclick="addTab('权限管理','/auth')"><span>权限管理</span></a>
                         </li>
-                        @*<li data-options="state:'closed',iconCls:'icon-joystick'">
-                            <span>系统设置</span>
-                            <ul>
-                                <li data-options="iconCls:'icon-joystick_add'">
-                                    <span>test4</span>
-                                </li>
-                            </ul>
-                        </li>*@
                     </ul>
                 </div>
             </div>
@@ -110,27 +72,8 @@
                 <div style="margin: 5px">
                     <ul class="tree easyui-tree" data-options="animate:true,lines:true">
                         <li data-options="iconCls:'icon-group'">
-                            <a href="/BasicInfo"><span>查看资料</span></a>
-                            @*<ul>
-                                <li data-options="iconCls:'icon-group_add'">
-                                    <span>测试表格</span>
-                                </li>
-                                <li data-options="iconCls:'icon-group_delete'">
-                                    <span>test2</span>
-                                </li>
-                                <li data-options="iconCls:'icon-group_edit'">
-                                    <span>test3</span>
-                                </li>
-                            </ul>*@
+                            <a href="javascript:void(0)"  data-options="plain:true,iconCls:'icon-add'" onclick="addTab('查看资料','/basicinfo')"><span>查看资料</span></a>
                         </li>
-                        @*<li data-options="state:'closed',iconCls:'icon-joystick'">
-                            <span>系统设置</span>
-                            <ul>
-                                <li data-options="iconCls:'icon-joystick_add'">
-                                    <span>test4</span>
-                                </li>
-                            </ul>
-                        </li>*@
                     </ul>
                 </div>
             </div>
@@ -148,11 +91,6 @@
         
         
     </div>
-       
-    <div id="tab-tools">
-        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'" onclick="addTab()"></a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-remove'" onclick="removeTab()"></a>
-    </div>
 </body>
 
 </html>
@@ -160,11 +98,11 @@
     var index = 0;
     function addTab(subtitle, url, icon) {
         index++;
-        console.log(subtitle, url, icon);
-        if ($('#tabs').tabs('exists', subtitle)) {
+        if (!$('#tabs').tabs('exists', subtitle)) {
+            
             $('#tabs').tabs('add', {
                 title: subtitle,
-                content: createFrame('http://www.baidu.com/'),
+                content: createFrame(url),
                 closable: true,
                 icon: ''
             });
