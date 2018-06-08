@@ -5,8 +5,8 @@ using System.Web;
 
 namespace MvcApplication1.Models
 {
-    public class Auth : BaseEnitiy
+    public class BaseEnitiy
     {
-        public string Url { get; set; }
+        public int ID { get; set; }
     }
 }

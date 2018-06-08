@@ -5,9 +5,8 @@ using System.Web;
 
 namespace MvcApplication1.Models
 {
-    public class User
+    public class User :BaseEnitiy
     {
-        public int ID { get; set; }
         public int fkRole { get; set; }
         public string Name { get; set; }
         public string Account { get; set; }

@@ -1,4 +1,5 @@
 ﻿using MvcApplication1.Models;
+using MvcApplication1.Services;
 using MvcApplication1.Tools;
 using System;
 using System.Collections.Generic;
@@ -19,17 +20,13 @@ namespace MvcApplication1.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(User user) 
+        public ActionResult Login(User user) 
         {
-
             string pwd = SecurityHelper.str2md5(user.Password);
-
-            if (User!=null)
-            {
-                return RedirectToRoute("/home");
-                
-            }
-            return View();
+            
+            var rv = new { success = true };
+            return Json(rv, JsonRequestBehavior.AllowGet);
+            
 
         }
 
