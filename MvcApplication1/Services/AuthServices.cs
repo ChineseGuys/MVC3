@@ -22,6 +22,13 @@ namespace MvcApplication1.Services
             var result = ConvertHelper.GetEntities<Auth>(datatable).ToList();
             return result;
         }
+        public List<Auth> GetUrlByraRelationAndAuth(int roleID)
+        {
+            string sql = "select * from [Auth] inner join [Role_Auth_Relation] on Role_Auth_Relation.AuthID=[Auth].ID where Role_Auth_Relation.RoleID=" + roleID;
+            var datatable = SqlHelper.ExecuteDataTable(sql, CommandType.Text, null);
+            var result = ConvertHelper.GetEntities<Auth>(datatable).ToList();
+            return result;
+        }
 
         public int Insert(Auth auth)
         {

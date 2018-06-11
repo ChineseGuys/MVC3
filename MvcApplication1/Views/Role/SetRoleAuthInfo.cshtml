@@ -1,0 +1,72 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "为用户分配角色";
+}
+@using MvcApplication1.Models;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="/Scripts/datapattern.js"></script>
+    <script src="/Scripts/jquery-1.10.2.js"></script>
+    <link href="/Content/jquery-easyui-1.5.5.2/themes/default/easyui.css" rel="stylesheet" />
+    <link href="/Content/jquery-easyui-1.5.5.2/themes/icon.css" rel="stylesheet" />
+    <link href="/Content/admin.css" rel="stylesheet" />
+    <script src="/Content/jquery-easyui-1.5.5.2/jquery.min.js"></script>
+    <script src="/Content/jquery-easyui-1.5.5.2/jquery.easyui.min.js"></script>
+    <script src="/Content/common.js"></script>
+    <script src="/Scripts/jquery.unobtrusive-ajax.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        function subSetRoleForm() {
+            $("#form1").submit();
+        }
+    </script>
+</head>
+<body>
+    <div>
+        为用户
+        @{
+            Role role = (Role)ViewBag.RoleInfo;
+            <span style="font-size:28px;color:#f00;"></span> @role.Name
+        }&nbsp;分配角色
+        <form action="/" method="post">
+
+        </form>
+        @{
+            
+            <!--获取后台查询好的数据-->
+            using (Ajax.BeginForm("SetRoleAuthInfo", new { }, new AjaxOptions() { OnSuccess = "afterSet", HttpMethod = "post" }, new { id = "form1" }))
+            {
+
+                //隐藏域用来存储用户ID提交后台
+                <input type="hidden" name="roleId" value="@role.ID" />
+                //所有权限
+                List<Auth> authInfoList = (List<Auth>)ViewBag.AuthInfo;
+
+                List<int> authId = ViewBag.AuthIDList;
+
+                string actionID = string.Empty;
+                for (int i = 0; i < authId.Count; i++)
+                {
+                    var authInfo = authInfoList.Where(p => p.ID == authId[i]).FirstOrDefault();
+                    if (authInfo != null)
+                    {
+                        <input type="checkbox" name="@authId[i]" value="@authInfo.ID" checked="checked" /> @authInfo.Url <br />
+                    }
+                    authInfoList.Remove(authInfo);
+                }
+
+                foreach (var authInfo in authInfoList)
+                {
+                    actionID ="cba"+authInfo.ID;
+                    <input type="checkbox" name="@authInfo.ID" value="@authInfo.ID" /> @authInfo.Url <br />
+
+                }
+
+            }
+        }
+    </div>
+</body>
+</html>

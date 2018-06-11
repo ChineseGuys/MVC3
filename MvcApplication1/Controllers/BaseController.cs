@@ -8,7 +8,6 @@ namespace MvcApplication1.Controllers
 {
     public class BaseController : Controller
     {
-<<<<<<< HEAD
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
@@ -23,20 +22,6 @@ namespace MvcApplication1.Controllers
             }
 
         }
-=======
-        //
-        // GET: /Base/
-
-        //public ActionResult Index()
-        //{
-        //    if (Session["UserInfo"] == null) 
-        //    {
-        //        Response.Redirect("/Login/index");
-        //    }
-            
-        //    return View();
-        //}
->>>>>>> 84fa867c39e71e587f766acd52a9b029090b4ea4
 
     }
 }

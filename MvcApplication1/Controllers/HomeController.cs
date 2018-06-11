@@ -1,4 +1,6 @@
-﻿using MvcApplication1.Models;
+﻿using MvcApplication1.Dal;
+using MvcApplication1.Models;
+using MvcApplication1.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,15 +14,19 @@ namespace MvcApplication1.Controllers
         //
         // GET: /Home/
 
-        public ActionResult Index(User user)
+        public ActionResult Index()
         {
-<<<<<<< HEAD
-            user.Name = "33";
-            return View(user);
-=======
-            
-            return View();
->>>>>>> 84fa867c39e71e587f766acd52a9b029090b4ea4
+            AuthServices authServices = new AuthServices();
+            var _userServices = new UserInfoDal();
+            List<Auth> authList = null;
+            var dbUser = _userServices.GetAll().Where(p => p.Account == Session["UserName"].ToString() && p.IsActive).FirstOrDefault();
+            if (dbUser!=null)
+            {
+                authList = authServices.GetUrlByraRelationAndAuth(dbUser.fkRole);
+                 
+            }
+
+            return View(authList);
         }
 
     }

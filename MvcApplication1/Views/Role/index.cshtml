@@ -77,12 +77,52 @@
                     handler: function () {
                         editInfo();
                     }
+                }, {
+                    id: 'btnAuth',
+                    text: '分配权限',
+                    iconCls: 'icon-edit',
+                    handler: function () {
+                        editAuth();
+                    }
                 }]
             });
         }
 
+        function editAuth() {
+            var rows = $('#tt').datagrid('getSelections');//获取选取数据的条数
+            if (rows.length != 1) {
+                $.messager.alert("提示", "你会分配吗？", "error");
+                return;
+            }
+            $('#setUserRoleDiv').css("display", "block");
+            $('#setRoleFrame').attr("src", "/role/SetRoleAuthInfo/?id=" + rows[0].ID);
+            $('#setUserRoleDiv').dialog({
+                title: "为角色分配权限",
+                modal: true,
+                collapsible: true,
+                width: 300,
+                height: 400,
+                buttons: [{
+                    text: 'Ok',
+                    iconCls: 'icon-ok',
+                    handler: function () {
+                        var chlidWindow = $('#setRoleFrame')[0].contentWindow;//获取子窗体的Window对象
+                        //$('#setUserRoleDiv').dialog('close');
+                        //调用子窗体中的方法
+                        chlidWindow.subSetRoleForm();
+                        //关闭模态框
+                        $.messager.alert("提示", "权限分配成功")
+                        $('#setUserRoleDiv').dialog('close');
+                    }
+                }, {
+                    text: 'Cancel',
+                    handler: function () {
+                        $('#setUserRoleDiv').dialog('close');
 
-
+                    }
+                }]
+            });
+        }
         
 
         //添加信息
@@ -252,6 +292,8 @@
         }
     </div>
     <!---------------修改信息结束-------------------------->
-
+    <div id="setUserRoleDiv">
+        <iframe id="setRoleFrame" frameborder="0" scrolling="no" width="100%" height="100%"></iframe>
+    </div>
 </body>
 </html>

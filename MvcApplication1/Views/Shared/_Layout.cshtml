@@ -23,65 +23,78 @@
     </div>
     <div data-options="region:'west',split:true,title:'导航菜单'" style="width: 170px;">
         <div class="easyui-accordion" data-options="fit:true,border:false">
-            <div title="用户管理" data-options="selected:true">
-                <div style="margin: 5px">
-                    <ul class="tree easyui-tree" data-options="animate:true,lines:true">
-                        <li data-options="iconCls:'icon-group'">
-                            <a href="javascript:void(0)"  data-options="plain:true,iconCls:'icon-add'" onclick="addTab('用户设置','/user')"><span>用户设置</span></a>
-                            @*<ul>
-                                <li data-options="iconCls:'icon-group_add'">
-                                    <span>测试表格</span>
+            @foreach (var item in Model)
+            {
+                if (item.Url=="user")
+                {
+                    <div title="用户管理" data-options="selected:true">
+                        <div style="margin: 5px">
+                            <ul class="tree easyui-tree" data-options="animate:true,lines:true">
+                                <li data-options="iconCls:'icon-group'">
+                                    <a href="javascript:void(0)"  data-options="plain:true,iconCls:'icon-add'" onclick="addTab('用户设置','/user')"><span>用户设置</span></a>
+                                    @*<ul>
+                                        <li data-options="iconCls:'icon-group_add'">
+                                            <span>测试表格</span>
+                                        </li>
+                                        <li data-options="iconCls:'icon-group_delete'">
+                                            <span>test2</span>
+                                        </li>
+                                        <li data-options="iconCls:'icon-group_edit'">
+                                            <span>test3</span>
+                                        </li>
+                                    </ul>*@
                                 </li>
-                                <li data-options="iconCls:'icon-group_delete'">
-                                    <span>test2</span>
-                                </li>
-                                <li data-options="iconCls:'icon-group_edit'">
-                                    <span>test3</span>
-                                </li>
-                            </ul>*@
-                        </li>
-                        @*<li data-options="state:'closed',iconCls:'icon-joystick'">
-                            <span>系统设置</span>
-                            <ul>
-                                <li data-options="iconCls:'icon-joystick_add'">
-                                    <span>test4</span>
+                                @*<li data-options="state:'closed',iconCls:'icon-joystick'">
+                                    <span>系统设置</span>
+                                    <ul>
+                                        <li data-options="iconCls:'icon-joystick_add'">
+                                            <span>test4</span>
+                                        </li>
+                                    </ul>
+                                </li>*@
+                            </ul>
+                        </div>
+                    </div>
+                }
+                if (item.Url=="role")
+                {
+                    <div title="角色管理" style="padding: 10px;">
+                        <div style="margin: 5px">
+                            <ul class="tree easyui-tree" data-options="animate:true,lines:true">
+                                <li data-options="iconCls:'icon-group'">
+                                    <a href="javascript:void(0)"  data-options="plain:true,iconCls:'icon-add'" onclick="addTab('角色设置','/role')"><span>角色设置</span></a>
                                 </li>
                             </ul>
-                        </li>*@
-                    </ul>
-                </div>
-            </div>
-            <div title="角色管理" style="padding: 10px;">
-                <div style="margin: 5px">
-                    <ul class="tree easyui-tree" data-options="animate:true,lines:true">
-                        <li data-options="iconCls:'icon-group'">
-                            <a href="javascript:void(0)"  data-options="plain:true,iconCls:'icon-add'" onclick="addTab('角色设置','/role')"><span>角色设置</span></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            @if (Model.Name!="33")
-            {
-                <div title="权限管理" style="padding: 10px">
-                <div style="margin: 5px">
-                    <ul class="tree easyui-tree" data-options="animate:true,lines:true">
-                        <li data-options="iconCls:'icon-group'">
-                            <a href="javascript:void(0)"  data-options="plain:true,iconCls:'icon-add'" onclick="addTab('权限管理','/auth')"><span>权限管理</span></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+                        </div>
+                    </div>
+                }
+                if (item.Url == "auth")
+                {
+                    <div title="权限管理" style="padding: 10px">
+                        <div style="margin: 5px">
+                            <ul class="tree easyui-tree" data-options="animate:true,lines:true">
+                                <li data-options="iconCls:'icon-group'">
+                                    <a href="javascript:void(0)"  data-options="plain:true,iconCls:'icon-add'" onclick="addTab('权限管理','/auth')"><span>权限管理</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                }
+
+                if (item.Url == "basicinfo")
+                {
+                    <div title="基础资料管理" style="padding: 10px">
+                        <div style="margin: 5px">
+                            <ul class="tree easyui-tree" data-options="animate:true,lines:true">
+                                <li data-options="iconCls:'icon-group'">
+                                    <a href="javascript:void(0)"  data-options="plain:true,iconCls:'icon-add'" onclick="addTab('查看资料','/basicinfo')"><span>查看资料</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> 
+                }
             }
             
-            <div title="基础资料管理" style="padding: 10px">
-                <div style="margin: 5px">
-                    <ul class="tree easyui-tree" data-options="animate:true,lines:true">
-                        <li data-options="iconCls:'icon-group'">
-                            <a href="javascript:void(0)"  data-options="plain:true,iconCls:'icon-add'" onclick="addTab('查看资料','/basicinfo')"><span>查看资料</span></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </div>
     </div>
     <div data-options="region:'south',border:false" style="height: 23px;">
