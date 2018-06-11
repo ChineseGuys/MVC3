@@ -5,10 +5,9 @@ using System.Web;
 
 namespace MvcApplication1.Models
 {
-    public class Role
+    public class Role : BaseEnitiy
     {
-        public int ID { get; set; }
         public string Name { get; set; }
-        public int IsActive { get; set; }
+        public bool IsActive { get; set; }
     }
 }

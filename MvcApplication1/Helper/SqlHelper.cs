@@ -11,7 +11,7 @@ namespace MvcApplication1.Helper
     /// <summary>
     /// 数据库帮助类
     /// </summary>
-    public static class SqlHelper
+    public  class SqlHelper
     {
         // 获取连接字符串
         public static readonly string conString = ConfigurationManager.ConnectionStrings["DbConnectionString"].ConnectionString;
@@ -136,6 +136,5 @@ namespace MvcApplication1.Helper
             return dt;
         }
        
-        
     }
 }

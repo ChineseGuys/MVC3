@@ -1,4 +1,6 @@
-﻿using MvcApplication1.Models;
+﻿using MvcApplication1.Dal;
+using MvcApplication1.Models;
+using MvcApplication1.Services;
 using MvcApplication1.Tools;
 using System;
 using System.Collections.Generic;
@@ -19,18 +21,22 @@ namespace MvcApplication1.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(User user) 
+        public ActionResult Login(User user) 
         {
-
+            var _userServices = new UserInfoDal();
             string pwd = SecurityHelper.str2md5(user.Password);
 
-            if (User!=null)
+            var dbUser = _userServices.GetAll().Where(p => p.Account == user.Account && p.Password == pwd && p.IsActive).FirstOrDefault();
+            if (dbUser!=null)
             {
-                Response.Redirect("/home/index");
-                
+                var rv = new { success = true };
+                return Json(rv, JsonRequestBehavior.AllowGet);
             }
-            return View();
-
+            else
+            {
+                var rv = new { success = false };
+                return Json(rv, JsonRequestBehavior.AllowGet);
+            }
         }
 
     }

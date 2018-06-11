@@ -10,6 +10,6 @@ namespace MvcApplication1.Services
     {
         List<Auth> GetAll();
 
-        void Insert(Auth auth);
+        int Insert(Auth auth);
     }
 }

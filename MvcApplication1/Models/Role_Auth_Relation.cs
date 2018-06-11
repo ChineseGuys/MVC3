@@ -5,9 +5,8 @@ using System.Web;
 
 namespace MvcApplication1.Models
 {
-    public class Role_Auth_Relation
+    public class Role_Auth_Relation : BaseEnitiy
     {
-        public int ID { get; set; }
         public int UserID { get; set; }
         public int AuthID { get; set; }
     }

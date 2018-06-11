@@ -33,11 +33,11 @@
 	    	<table cellpadding="5">
 	    		<tr>
 	    			<td>账号:</td>
-	    			<td><input class="easyui-textbox" type="text" name="Account" data-options="required:true"></input></td>
+	    			<td><input class="easyui-textbox" type="text" name="Account" data-options="required:true"></td>
 	    		</tr>
 	    		<tr>
 	    			<td>密码:</td>
-	    			<td><input class="easyui-textbox" type="text" name="Password" data-options="required:true"></input></td>
+	    			<td><input class="easyui-textbox" type="text" name="Password" data-options="required:true"></td>
 	    		</tr>
 	    	</table>
 	    </form>
@@ -50,14 +50,44 @@
 </body>
 </html>
 <script>
-		function submitForm(){
-			$('#ff').form('submit',{
-				onSubmit:function(){
-					return $(this).form('enableValidation').form('validate');
-				}
-			});
-		}
-		function clearForm(){
-			$('#ff').form('clear');
-		}
-	</script>
+    function saveUser() {
+        $('#fm').form('submit', {
+            url: url,
+            onSubmit: function () {
+                return $(this).form('validate');
+            },
+            success: function (result) {
+                if (result.success) {
+                    self.location = "home";
+                } else {
+                    $.messager.show({
+                        title: 'Error',
+                        msg: result.msg
+                    });
+                }
+            }
+        });
+    }
+	function submitForm(){
+		$('#ff').form('submit', {
+		    url: 'login/Login',
+		    onSubmit: function () {
+		        return $(this).form('validate');
+		    },
+		    success: function (result) {
+		        var result = eval('(' + result + ')');
+		        if (result.success) {
+		            self.location = "Home";
+		        } else {
+		            $.messager.alert({
+		                title: 'Error',
+		                msg: "账号或密码错误"
+		            });
+		        }
+		    }
+		});
+	}
+	function clearForm(){
+		$('#ff').form('clear');
+	}
+</script>

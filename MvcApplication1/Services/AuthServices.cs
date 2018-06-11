@@ -11,7 +11,7 @@ using System.Web;
 
 namespace MvcApplication1.Services
 {
-    public class AuthServices : IAuthServices
+    public class AuthServices
     {
         public AuthServices() {  }
 
@@ -23,11 +23,18 @@ namespace MvcApplication1.Services
             return result;
         }
 
-        public void Insert(Auth auth)
+        public int Insert(Auth auth)
         {
-            string sql = "INSERT [Auth](url) VALUES(@url);";
+            string sql = "INSERT [Auth](url) VALUES(@url)";
             var parms = ConvertHelper.ToSqlParameterArray<Auth>(auth);
-            SqlHelper.ExecuteNonQuery(sql, CommandType.Text, parms);
+            return SqlHelper.ExecuteNonQuery(sql, CommandType.Text, parms);
+        }
+
+        public int Update(Auth auth) 
+        {
+            string sql = "UPDATE [Auth] SET Url=@url where ID=@id";
+            var parms = ConvertHelper.ToSqlParameterArray<Auth>(auth);
+            return SqlHelper.ExecuteNonQuery(sql, CommandType.Text, parms);
         }
         
     }
