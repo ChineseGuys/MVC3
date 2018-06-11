@@ -4,7 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MvcApplication1.Models;
+<<<<<<< HEAD
 using MvcApplication1.Dal;
+=======
+>>>>>>> d63cbe66a5d63b7ad1e810ba19e8d88208bdef05
 using MvcApplication1.Services;
 
 namespace MvcApplication1.Controllers
@@ -12,10 +15,15 @@ namespace MvcApplication1.Controllers
     public class RoleController : BaseController
     {
         Role role = new Role();
+<<<<<<< HEAD
         RoleInfoDal roleInfo = new RoleInfoDal();
         UserInfoDal userInfo = new UserInfoDal();
         AuthServices authServices = new AuthServices();
         Role_Auth_RelationServices raRalationServices = new Role_Auth_RelationServices();
+=======
+        RoleServices roleInfoDal = new RoleServices();
+        
+>>>>>>> d63cbe66a5d63b7ad1e810ba19e8d88208bdef05
         //
         // GET: /Role/
 

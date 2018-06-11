@@ -1,4 +1,4 @@
-﻿using MvcApplication1.Dal;
+﻿
 using MvcApplication1.Models;
 using MvcApplication1.Services;
 using MvcApplication1.Tools;
@@ -23,7 +23,7 @@ namespace MvcApplication1.Controllers
         [HttpPost]
         public ActionResult Login(User user) 
         {
-            var _userServices = new UserInfoDal();
+            var _userServices = new UserServices();
             string pwd = SecurityHelper.str2md5(user.Password);
             
             var dbUser = _userServices.GetAll().Where(p => p.Account == user.Account && p.Password == pwd && p.IsActive).FirstOrDefault();
