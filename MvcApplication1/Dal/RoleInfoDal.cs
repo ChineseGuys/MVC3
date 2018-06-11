@@ -34,7 +34,7 @@ namespace MvcApplication1.Dal
         public int Add(Models.Role role)
         {
             string sql = @"INSERT into 
-                                  [Role](Name,sActive) 
+                                  [Role](Name,IsActive) 
                                   VALUES(@Name,@IsActive);";
             var parms = ConvertHelper.ToSqlParameterArray<Role>(role);
             return SqlHelper.ExecuteNonQuery(sql, CommandType.Text, parms);
@@ -69,5 +69,21 @@ namespace MvcApplication1.Dal
             };
             return SqlHelper.ExecuteNonQuery(sql, CommandType.Text, para);
         }
+
+
+        //public List<User> getUserInfoRole(int id) 
+        //{
+        //    // 查询当前用户拥有的角色名
+        //    string sql = @"select u.fkRole from [User] as u inner join [Role] as r on  u.ID=@id and u.fkRole=r.ID";
+
+        //    SqlParameter[] para = new SqlParameter[]{
+        //        new SqlParameter("@id",id)
+        //    };
+        //    using (SqlHelper.ExecuteReader(sql, CommandType.Text, para))
+        //    {
+
+        //    }
+
+        //}
     }
 }

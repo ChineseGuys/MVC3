@@ -96,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BasicInfoController.cs" />
     <Compile Include="Controllers\BaseController.cs">
       <SubType>Code</SubType>
@@ -1117,6 +1118,7 @@
     <Content Include="Views\Device\index.cshtml" />
     <Content Include="Views\BasicInfo\index.cshtml" />
     <Content Include="Views\Login\index.cshtml" />
+    <Content Include="Views\User\SetUserRoleInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

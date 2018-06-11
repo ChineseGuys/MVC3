@@ -13,18 +13,21 @@ namespace MvcApplication1.Dal
     public class UserInfoDal : IUserInfoDal
     {
         /// <summary>
-        /// 获取用户信息
+        /// 获取用户信息(根据ID获取)
         /// </summary>
         /// <returns></returns>
-        /// 
-        /*  备用
         public List<User> GetUserInfo(int id)
         {
             List<User> list = new List<User>();
             // sql语句
-            string sql = @"select ID,fkRole,Name,Account,PhoneNumber,Password,CreateTime,IsActive from User ";
+            string sql = @"select ID,fkRole,Name,Account,PhoneNumber,Password,CreateTime,IsActive from [User] where ID=@id ";
+            // 参数
+            SqlParameter[] para = new SqlParameter[]
+            {
+                new SqlParameter("@id",id)
+            };
             // 调用SqlHelper中的ExecuteReader方法获取数据
-            using (SqlDataReader reader = SqlHelper.ExecuteReader(sql, CommandType.Text))
+            using (SqlDataReader reader = SqlHelper.ExecuteReader(sql, CommandType.Text, para))
             {
                 //如果查询到了数据继续往下执行
                 if (reader.HasRows)
@@ -38,10 +41,10 @@ namespace MvcApplication1.Dal
                         userInfo.fkRole = reader.GetInt32(1);//reader["fkRole"];//reader.GetInt32(1);
                         userInfo.Name = reader.GetString(2);
                         userInfo.Account = reader.GetString(3);
-                        userInfo.PhoneNumber = reader.GetInt32(4);
+                        userInfo.PhoneNumber = reader.GetInt64(4);
                         userInfo.Password = reader.GetString(5);
                         userInfo.CreateTime = reader.GetInt64(6);
-                        userInfo.IsActive = reader.GetInt32(7);
+                        userInfo.IsActive = reader.GetBoolean(7);
                         list.Add(userInfo);
 
                     }
@@ -50,7 +53,7 @@ namespace MvcApplication1.Dal
 
             return list;
         }
-         */
+         
 
         /* 添加备用
         public int Add(User model)
@@ -116,6 +119,50 @@ namespace MvcApplication1.Dal
                                 where ID=@ID";
             var parms = ConvertHelper.ToSqlParameterArray<User>(user);
             return SqlHelper.ExecuteNonQuery(sql, CommandType.Text, parms);
+        }
+
+
+        /// <summary>
+        /// 编辑用户信息
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public int Edit(int id, string name, string account, long phoneNumber)
+        {
+            string sql = @"update [User] 
+                               set 
+                              Name=@Name,Account=@Account,PhoneNumber=@PhoneNumber
+                                where ID=@ID";
+
+            SqlParameter[] para = new SqlParameter[]{
+            new SqlParameter("@ID",id),
+            new SqlParameter("Name",name),
+            new SqlParameter("@Account",account),
+            new SqlParameter("@PhoneNumber",phoneNumber)
+            };
+            return SqlHelper.ExecuteNonQuery(sql, CommandType.Text, para);
+        }
+
+
+        /// <summary>
+        /// 给用户分配角色
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int Edit(int id,int roleId)
+        {
+            string sql = @"update [User] 
+                               set 
+                              fkRole=@fkRole
+                                where ID=@ID";
+            SqlParameter[] para = new SqlParameter[]
+            {
+                new SqlParameter("@fkRole",roleId),
+                new SqlParameter("@ID",id)
+            };
+
+            return SqlHelper.ExecuteNonQuery(sql, CommandType.Text, para);
+
         }
     }
 }

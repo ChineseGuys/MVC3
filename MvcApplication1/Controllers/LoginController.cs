@@ -25,7 +25,7 @@ namespace MvcApplication1.Controllers
         {
             var _userServices = new UserInfoDal();
             string pwd = SecurityHelper.str2md5(user.Password);
-
+            
             var dbUser = _userServices.GetAll().Where(p => p.Account == user.Account && p.Password == pwd && p.IsActive).FirstOrDefault();
             if (dbUser!=null)
             {

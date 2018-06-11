@@ -90,7 +90,15 @@
                     handler: function () {
                         editInfo();
                     }
-                }]
+                }, {
+                    id: 'btnSetAction',
+                    text: '为用户分配角色',
+                    iconCls: 'icon-edit',
+                    handler: function () {
+                        setUserRole();
+                    }
+                }
+                ]
             });
         }
 
@@ -116,6 +124,43 @@
                     text: 'Cancel',
                     handler: function () {
                         $('#addDiv').dialog('close');
+
+                    }
+                }]
+            });
+        }
+
+        //为用户分配角色
+        function setUserRole() {
+            var rows = $('#tt').datagrid('getSelections');//获取选取数据的条数
+            if (rows.length != 1) {
+                $.messager.alert("提示", "你会分配吗？", "error");
+                return;
+            }
+            $('#setUserRoleDiv').css("display", "block");
+            $('#setRoleFrame').attr("src", "/User/SetUserRoleInfo/?id=" + rows[0].ID);
+            $('#setUserRoleDiv').dialog({
+                title: "为用户分配角色",
+                modal: true,
+                collapsible: true,
+                width: 300,
+                height: 400,
+                buttons: [{
+                    text: 'Ok',
+                    iconCls: 'icon-ok',
+                    handler: function () { 
+                        var chlidWindow = $('#setRoleFrame')[0].contentWindow;//获取子窗体的Window对象
+                        //$('#setUserRoleDiv').dialog('close');
+                        //调用子窗体中的方法
+                        chlidWindow.subSetRoleForm();
+                        //关闭模态框
+                        $.messager.alert("提示", "角色分配成功")
+                        $('#setUserRoleDiv').dialog('close');
+                    }
+                }, {
+                    text: 'Cancel',
+                    handler: function () {
+                        $('#setUserRoleDiv').dialog('close');
 
                     }
                 }]
@@ -202,7 +247,7 @@
                         strId =  rows[0].ID;//1,3,5
                 //发送异步请求
                     $.post("/User/delete", { "strId": strId }, function (data) {
-                        if (data.messagecode == "yes") {
+                        if (data.message == "yes") {
                             $.messager.alert("提示", "删除成功", "info");
                             $('#tt').datagrid('reload');//重新加载
                             $('#tt').datagrid('clearSelections');//清空所选项
@@ -291,6 +336,13 @@
     </div>
     <!---------------修改信息结束-------------------------->
 
+    <!------------------给用户分配角色--------------------->
+
+     <div id="setUserRoleDiv">
+        <iframe id="setRoleFrame" frameborder="0" scrolling="no" width="100%" height="100%"></iframe>
+    </div>
+
+    <!------------------给用户分配角色结束--------------------->
 </body>
 </html>
 

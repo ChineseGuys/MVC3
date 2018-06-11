@@ -2,9 +2,6 @@
     ViewBag.Title = "角色管理";
     Layout = null;
 }
-
-!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -84,6 +81,9 @@
             });
         }
 
+
+
+        
 
         //添加信息
         function addInfo() {
@@ -191,7 +191,7 @@
                         strId =  rows[0].ID;//1,3,5
                 //发送异步请求
                     $.post("/Role/Delete", { "strId": strId }, function (data) {
-                        if (data.messagecode == "yes") {
+                        if (data.message == "yes") {
                             $.messager.alert("提示", "删除成功", "info");
                             $('#tt').datagrid('reload');//重新加载
                             $('#tt').datagrid('clearSelections');//清空所选项
