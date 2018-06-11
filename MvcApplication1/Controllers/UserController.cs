@@ -22,6 +22,11 @@ namespace MvcApplication1.Controllers
             return View();
         }
 
+
+        /// <summary>
+        /// 获取信息
+        /// </summary>
+        /// <returns></returns>
         public ActionResult GetMsg()
         {
             List<User> list = userInfo.GetAll();

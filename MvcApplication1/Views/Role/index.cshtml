@@ -1,6 +1,257 @@
 ﻿@{
-    ViewBag.Title = "index";
+    ViewBag.Title = "角色管理";
     Layout = null;
 }
 
-<h2>Roleindex</h2>
+!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="/Scripts/datapattern.js"></script>
+    <script src="/Scripts/jquery-1.10.2.js"></script>
+    
+    <link href="/Content/jquery-easyui-1.5.5.2/themes/default/easyui.css" rel="stylesheet" />
+    <link href="/Content/jquery-easyui-1.5.5.2/themes/icon.css" rel="stylesheet" />
+    <link href="/Content/admin.css" rel="stylesheet" />
+    <script src="/Content/jquery-easyui-1.5.5.2/jquery.min.js"></script>
+    <script src="/Content/jquery-easyui-1.5.5.2/jquery.easyui.min.js"></script>
+    <script src="/Content/common.js"></script>
+    <script src="/Scripts/jquery.unobtrusive-ajax.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            $('#addDiv').css("display", "none");
+            $('#editDiv').css("display", "none");
+            
+            // 加载数据
+            loadData();
+        });
+        function loadData() {
+            $("#tt").datagrid({
+                url: '/Role/GetMsg',
+                title: '数据表格',
+                width: 1200,
+                height: 600,
+                fitColumns: true, //列自适应
+                nowrap: false,
+                idField: 'ID',//主键列的列名
+                loadMsg: '正在加载信息...',
+                pagination: false,//是否有分页
+                singleSelect: false,//是否单行选择
+                pageSize: 5,//页大小，一页多少条数据
+                pageNumber: 1,//当前页，默认的
+                pageList: [5, 10, 15],
+                //queryParams: pars,//往后台传递参数
+                columns: [[
+                    { field: 'ck', checkbox: true, align: 'left', width: 50 },
+                    { field: 'ID', title: '编号', width: 80 },
+                    { field: 'Name', title: '角色名', width: 120 }
+                   //{
+                    //    field: 'UpdTime', title: '更新时间', width: 80, align: 'right',
+                    //    // 转换格式
+                    //    formatter: function (value, row, index) {
+                    //        return (eval(value.replace(/\/Date\((\d+)\)\//gi, "new Date($1)"))).pattern("yyyy-M-d");
+                    //    }
+                    //},
+                    
+                    
+                    
+                ]],
+                toolbar: [{
+                    id: 'btnDelete',
+                    text: '删除',
+                    iconCls: 'icon-remove',
+                    handler: function () {
+                        deleteInfo();
+                    }
+                }, {
+                    id: 'btnAdd',
+                    text: '添加',
+                    iconCls: 'icon-add',
+                    handler: function () {
+                        addInfo();
+                    }
+                }, {
+                    id: 'btnEdit',
+                    text: '更新',
+                    iconCls: 'icon-edit',
+                    handler: function () {
+                        editInfo();
+                    }
+                }]
+            });
+        }
+
+
+        //添加信息
+        function addInfo() {
+            $("#addDiv").css("display", "block");
+            $('#addDiv').dialog({
+                title: "添加信息",
+                modal: true,
+                collapsible: true,
+                width: 300,
+                height: 400,
+                buttons: [{
+                    text: 'Ok',
+                    iconCls: 'icon-ok',
+                    handler: function () {
+
+                        //校验未做
+                        $("#addForm").submit();//提交表单.
+                    }
+                }, {
+                    text: 'Cancel',
+                    handler: function () {
+                        $('#addDiv').dialog('close');
+
+                    }
+                }]
+            });
+        }
+
+
+        //添加完成以后调用该方法
+        function afterAdd() {
+            
+                $.messager.alert("提示", "添加成功", "info");
+                $('#addDiv').dialog('close');
+                $('#tt').datagrid('reload');//重新加载。
+                $("#addForm input").val("");
+            
+            //else {
+            //    $.messager.alert("提示", "添加失败", "error");
+            //    //$('#addDiv').dialog('close');
+            //    //$('#tt').datagrid('reload');//重新加载。
+            //    $("#addForm input").val("");
+            //}
+            
+        }
+        //修改完成之后调用该方法
+        function afterEdit() {
+            $.messager.alert("提示", "修改成功", "info");
+            $('#editDiv').dialog('close');
+            $('#tt').datagrid('reload');//重新加载。
+
+        }
+
+        //修改信息
+        function editInfo() {
+            var rows = $('#tt').datagrid('getSelections');//获取选取数据的条数
+            if (rows.length != 1) {
+                $.messager.alert("提示", "你会修改吗？", "error");
+                return;
+            }
+            
+            $('#editDiv').css("display", "blcok");//显示DIV
+            //给表单添加修改的信息
+            $('#ID').val(rows[0].ID);
+            $('#Name').val(rows[0].Name);
+            
+            
+
+            
+            $('#editDiv').dialog({
+                title: "更新信息",
+                modal: true,
+                collapsible: true,
+                width: 350,
+                height: 400,
+                buttons: [{
+                    text: 'Ok',
+                    iconCls: 'icon-ok',
+                    handler: function () {
+                        //校验未做
+                        //提交表单
+                        $('#editForm').submit();
+
+                    }
+                }, {
+                    text: 'Cancel',
+                    handler: function () {
+                        $('#editDiv').dialog('close');
+
+                    }
+                }]
+            });
+        }
+        //删除信息
+        function deleteInfo() {
+            var rows = $('#tt').datagrid('getSelections');
+            if (!rows || rows.length == 0) {
+                $.messager.alert("提醒", "请选择要删除的记录", "error");
+                return;
+            }
+            if ($.messager.confirm("提示", "确定要删除吗？", function (r) {
+                if (r) {//如果成立表示用户点击了确定
+                //获取要删除的记录的编号
+                    var strId = "";         
+                        strId =  rows[0].ID;//1,3,5
+                //发送异步请求
+                    $.post("/Role/Delete", { "strId": strId }, function (data) {
+                        if (data.messagecode == "yes") {
+                            $.messager.alert("提示", "删除成功", "info");
+                            $('#tt').datagrid('reload');//重新加载
+                            $('#tt').datagrid('clearSelections');//清空所选项
+            }
+            });
+            }
+            }));
+        }
+
+        //将序列化成json格式后日期(毫秒数)转成日期格式
+        function ChangeDateFormat(cellval) {
+            var date = new Date(parseInt(cellval.replace("/Date(", "").replace(")/", ""), 10));
+            var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+            var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+            return date.getFullYear() + "-" + month + "-" + currentDate;
+        }
+    </script>
+    <style type="text/css">
+        .table_tr {
+             border-collapse:separate;   border-spacing:15px;
+        }
+    </style>
+</head>
+<body>
+    
+        <table id="tt" style="width:700px;" title="111" iconcls="icon-edit">
+
+        </table>
+    <!---------------添加信息-------------------------->
+    <div id="addDiv">
+        @using (Ajax.BeginForm("Add", new { }, new AjaxOptions() { HttpMethod = "post", OnSuccess = "afterAdd" }, new { id = "addForm" }))
+        {
+            <table class="table_tr">
+                <tr>
+                    <td>角色名称</td>
+                    <td><input type="text" name="Name" id="n1"/></td>
+                </tr>
+                
+                
+            </table>
+        }
+    </div>
+    <!---------------添加信息结束-------------------------->
+    <!---------------修改信息-------------------------->
+    <div id="editDiv">
+        @using (Ajax.BeginForm("Edit", new { }, new AjaxOptions() { HttpMethod = "post", OnSuccess = "afterEdit" }, new { id = "editForm" }))
+        {
+            <input type="hidden" id="ID" name="ID" />
+             <table class="table_tr">
+                 
+                <tr>
+                    <td>姓名</td>
+                    <td><input type="text" name="Name" id="Name"/></td>
+                </tr>
+                                           
+            </table>
+            
+        }
+    </div>
+    <!---------------修改信息结束-------------------------->
+
+</body>
+</html>

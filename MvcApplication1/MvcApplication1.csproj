@@ -102,7 +102,9 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Dal\IRoleInfoDal.cs" />
     <Compile Include="Dal\IUserInfoDal.cs" />
+    <Compile Include="Dal\RoleInfoDal.cs" />
     <Compile Include="Dal\UserInfoDal.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -112,8 +112,8 @@ namespace MvcApplication1.Dal
         {
             string sql = @"update [User] 
                                set 
-                               fkRole=@fkRole,Name=@Name,Account=@Account,PhoneNumber=@PhoneNumber,Password=@Password,
-                               CreateTime=@CreateTime,IsActive=@IsActive where ID=@ID";
+                              Name=@Name,Account=@Account,PhoneNumber=@PhoneNumber
+                                where ID=@ID";
             var parms = ConvertHelper.ToSqlParameterArray<User>(user);
             return SqlHelper.ExecuteNonQuery(sql, CommandType.Text, parms);
         }
