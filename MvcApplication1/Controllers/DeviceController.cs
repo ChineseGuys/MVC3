@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace MvcApplication1.Controllers
 {
-    public class DeviceController : Controller
+    public class DeviceController : BaseController
     {
         //
         // GET: /Device/

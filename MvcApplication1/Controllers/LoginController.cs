@@ -30,11 +30,13 @@ namespace MvcApplication1.Controllers
             if (dbUser!=null)
             {
                 var rv = new { success = true };
+                Session["UserName"] = user.Account;
                 return Json(rv, JsonRequestBehavior.AllowGet);
             }
             else
             {
                 var rv = new { success = false };
+                Session["UserName"] = null;
                 return Json(rv, JsonRequestBehavior.AllowGet);
             }
         }

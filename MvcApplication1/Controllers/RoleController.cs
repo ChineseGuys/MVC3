@@ -8,7 +8,7 @@ using MvcApplication1.Dal;
 
 namespace MvcApplication1.Controllers
 {
-    public class RoleController : Controller
+    public class RoleController : BaseController
     {
         Role role = new Role();
         RoleInfoDal roleInfoDal = new RoleInfoDal();
@@ -41,7 +41,7 @@ namespace MvcApplication1.Controllers
         /// <returns></returns>
         public ActionResult Add(Role role) 
         {
-            role.IsActive = 1;
+            role.IsActive = true;
             int issuccess = roleInfoDal.Add(role);
             if (issuccess == 1)
             {

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace MvcApplication1.Controllers
 {
-    public class BasicInfoController : Controller
+    public class BasicInfoController : BaseController
     {
         //
         // GET: /BasicInfo/

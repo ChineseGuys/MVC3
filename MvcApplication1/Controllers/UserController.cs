@@ -11,7 +11,7 @@ using MvcApplication1.Helper;
 namespace MvcApplication1.Controllers
 {
 
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         UserInfoDal userInfo = new UserInfoDal();
         //

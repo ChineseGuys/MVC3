@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -59,20 +60,19 @@
                     </ul>
                 </div>
             </div>
-            @{
-                if (false)
-                {
-                    <div title="权限管理" style="padding: 10px">
-                    <div style="margin: 5px">
-                        <ul class="tree easyui-tree" data-options="animate:true,lines:true">
-                            <li data-options="iconCls:'icon-group'">
-                                <a href="javascript:void(0)"  data-options="plain:true,iconCls:'icon-add'" onclick="addTab('权限管理','/auth')"><span>权限管理</span></a>
-                            </li>
-                        </ul>
-                    </div>
+            @if (Model.Name!="33")
+            {
+                <div title="权限管理" style="padding: 10px">
+                <div style="margin: 5px">
+                    <ul class="tree easyui-tree" data-options="animate:true,lines:true">
+                        <li data-options="iconCls:'icon-group'">
+                            <a href="javascript:void(0)"  data-options="plain:true,iconCls:'icon-add'" onclick="addTab('权限管理','/auth')"><span>权限管理</span></a>
+                        </li>
+                    </ul>
                 </div>
-                }
+            </div>
             }
+            
             <div title="基础资料管理" style="padding: 10px">
                 <div style="margin: 5px">
                     <ul class="tree easyui-tree" data-options="animate:true,lines:true">
@@ -88,8 +88,8 @@
         <div class="footer">TeamWorkProject</div>
     </div>
     <div data-options="region:'center'">
-        <div id="tabs" class="easyui-tabs" data-options="tools:'#tab-tools',fit:true,border:false" >
-            <div title="主页" data-options="iconCls:'icon-house'" style="padding: 10px;">
+        <div id="tabs"  class="easyui-tabs" data-options="tools:'#tab-tools',fit:true,border:false" >
+            <div title="主页" closable="true" data-options="iconCls:'icon-house'" style="padding: 10px;">
                     @RenderBody()
             </div>
         </div>

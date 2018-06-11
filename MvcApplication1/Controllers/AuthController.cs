@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace MvcApplication1.Controllers
 {
-    public class AuthController : Controller
+    public class AuthController : BaseController
     {
         private  AuthServices _authServices;
 
