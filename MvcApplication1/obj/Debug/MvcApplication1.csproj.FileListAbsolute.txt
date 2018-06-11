@@ -35,3 +35,17 @@ C:\Users\Administrator\Desktop\MVC3\MvcApplication1\bin\zh-Hans\System.Web.Provi
 C:\Users\Administrator\Desktop\MVC3\MvcApplication1\obj\Debug\MvcApplication1.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\MVC3\MvcApplication1\obj\Debug\MvcApplication1.dll
 C:\Users\Administrator\Desktop\MVC3\MvcApplication1\obj\Debug\MvcApplication1.pdb
+E:\Git\MVC3\MvcApplication1\obj\Debug\MvcApplication1.csprojResolveAssemblyReference.cache
+E:\Git\MVC3\MvcApplication1\obj\Debug\MvcApplication1.dll
+E:\Git\MVC3\MvcApplication1\obj\Debug\MvcApplication1.pdb
+E:\Git\MVC3\MvcApplication1\bin\MvcApplication1.dll
+E:\Git\MVC3\MvcApplication1\bin\MvcApplication1.pdb
+E:\Git\MVC3\MvcApplication1\bin\EntityFramework.xml
+E:\Git\MVC3\MvcApplication1\bin\System.Web.Helpers.xml
+E:\Git\MVC3\MvcApplication1\bin\System.Web.Mvc.xml
+E:\Git\MVC3\MvcApplication1\bin\System.Web.Razor.xml
+E:\Git\MVC3\MvcApplication1\bin\System.Web.WebPages.xml
+E:\Git\MVC3\MvcApplication1\bin\System.Web.WebPages.Deployment.xml
+E:\Git\MVC3\MvcApplication1\bin\System.Web.WebPages.Razor.xml
+E:\Git\MVC3\MvcApplication1\bin\zh-Hans\EntityFramework.resources.dll
+E:\Git\MVC3\MvcApplication1\bin\zh-Hans\System.Web.Providers.resources.dll

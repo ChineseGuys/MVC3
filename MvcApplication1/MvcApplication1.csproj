@@ -98,9 +98,14 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BasicInfoController.cs" />
+    <Compile Include="Controllers\BaseController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controllers\DeviceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\LoginController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">

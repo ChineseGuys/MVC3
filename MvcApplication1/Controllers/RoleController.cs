@@ -8,7 +8,7 @@ using MvcApplication1.Services;
 
 namespace MvcApplication1.Controllers
 {
-    public class RoleController : Controller
+    public class RoleController : BaseController
     {
         Role role = new Role();
         RoleServices roleInfoDal = new RoleServices();

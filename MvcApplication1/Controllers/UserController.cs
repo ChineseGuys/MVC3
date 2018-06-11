@@ -11,7 +11,7 @@ using MvcApplication1.Services;
 namespace MvcApplication1.Controllers
 {
 
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         //UserInfoDal userInfo = new UserInfoDal();
         //RoleInfoDal roleInfo = new RoleInfoDal();
