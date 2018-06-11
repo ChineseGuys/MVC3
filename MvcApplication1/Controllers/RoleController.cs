@@ -4,10 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MvcApplication1.Models;
-<<<<<<< HEAD
-using MvcApplication1.Dal;
-=======
->>>>>>> d63cbe66a5d63b7ad1e810ba19e8d88208bdef05
+using MvcApplication1.Services;
 using MvcApplication1.Services;
 
 namespace MvcApplication1.Controllers
@@ -15,15 +12,10 @@ namespace MvcApplication1.Controllers
     public class RoleController : BaseController
     {
         Role role = new Role();
-<<<<<<< HEAD
-        RoleInfoDal roleInfo = new RoleInfoDal();
-        UserInfoDal userInfo = new UserInfoDal();
         AuthServices authServices = new AuthServices();
         Role_Auth_RelationServices raRalationServices = new Role_Auth_RelationServices();
-=======
         RoleServices roleInfoDal = new RoleServices();
         
->>>>>>> d63cbe66a5d63b7ad1e810ba19e8d88208bdef05
         //
         // GET: /Role/
 
@@ -39,7 +31,7 @@ namespace MvcApplication1.Controllers
         /// <returns></returns>
         public ActionResult GetMsg()
         {
-            List<Role> list = roleInfo.GetAll();
+            List<Role> list = roleInfoDal.GetAll();
             //ViewData["msg"] = list;
             return Json(list, JsonRequestBehavior.AllowGet);
         }
@@ -54,7 +46,7 @@ namespace MvcApplication1.Controllers
         public ActionResult Add(Role role) 
         {
             role.IsActive = true;
-            int issuccess = roleInfo.Add(role);
+            int issuccess = roleInfoDal.Add(role);
             if (issuccess == 1)
             {
                 var ret = new
@@ -84,7 +76,7 @@ namespace MvcApplication1.Controllers
         {
             int id = Convert.ToInt32(Request["strId"]);
             // 受影响的行数（为1，则表示成功）
-            int issuccess = roleInfo.delete(id);
+            int issuccess = roleInfoDal.delete(id);
             if (issuccess == 1)
             {
                 var ret = new
@@ -114,7 +106,7 @@ namespace MvcApplication1.Controllers
         public ActionResult Edit(Role role)
         {
             // 受影响的行数（为1，则表示成功）
-            int issuccess = roleInfo.Edit(role);
+            int issuccess = roleInfoDal.Edit(role);
             if (issuccess == 1)
             {
                 var ret = new
@@ -140,7 +132,7 @@ namespace MvcApplication1.Controllers
             int id = int.Parse(Request["id"]);
 
             // 查询所有角色的信息
-            var roleMsg = roleInfo.GetAll().Where(p=>p.ID==id).FirstOrDefault();
+            var roleMsg = roleInfoDal.GetAll().Where(p=>p.ID==id).FirstOrDefault();
             ViewBag.RoleInfo = roleMsg;
 
             var authMsg = authServices.GetAll();

@@ -117,13 +117,9 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthServices.cs" />
-<<<<<<< HEAD
     <Compile Include="Services\Role_Auth_RelationServices.cs" />
-=======
-    <Compile Include="Services\IAuthServices.cs" />
     <Compile Include="Services\RoleServices.cs" />
     <Compile Include="Services\UserServices.cs" />
->>>>>>> d63cbe66a5d63b7ad1e810ba19e8d88208bdef05
     <Compile Include="Tools\ConvertHelper.cs" />
     <Compile Include="Tools\SecurityHelper.cs" />
   </ItemGroup>

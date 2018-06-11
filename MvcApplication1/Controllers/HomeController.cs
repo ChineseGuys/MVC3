@@ -1,5 +1,4 @@
-﻿using MvcApplication1.Dal;
-using MvcApplication1.Models;
+﻿using MvcApplication1.Models;
 using MvcApplication1.Services;
 using System;
 using System.Collections.Generic;
@@ -17,7 +16,7 @@ namespace MvcApplication1.Controllers
         public ActionResult Index()
         {
             AuthServices authServices = new AuthServices();
-            var _userServices = new UserInfoDal();
+            var _userServices = new UserServices();
             List<Auth> authList = null;
             var dbUser = _userServices.GetAll().Where(p => p.Account == Session["UserName"].ToString() && p.IsActive).FirstOrDefault();
             if (dbUser!=null)
