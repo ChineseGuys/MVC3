@@ -13,6 +13,6 @@ namespace MvcApplication1.Models
         public long PhoneNumber { get; set; }
         public string Password { get; set; }
         public long CreateTime { get; set; }
-        public int IsActive { get; set; }
+        public bool IsActive { get; set; }
     }
 }

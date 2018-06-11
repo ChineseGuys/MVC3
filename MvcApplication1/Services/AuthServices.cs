@@ -11,7 +11,7 @@ using System.Web;
 
 namespace MvcApplication1.Services
 {
-    public class AuthServices : IAuthServices
+    public class AuthServices
     {
         public AuthServices() {  }
 

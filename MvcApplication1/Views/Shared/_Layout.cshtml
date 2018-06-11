@@ -59,15 +59,20 @@
                     </ul>
                 </div>
             </div>
-            <div title="权限管理" style="padding: 10px">
-                <div style="margin: 5px">
-                    <ul class="tree easyui-tree" data-options="animate:true,lines:true">
-                        <li data-options="iconCls:'icon-group'">
-                            <a href="javascript:void(0)"  data-options="plain:true,iconCls:'icon-add'" onclick="addTab('权限管理','/auth')"><span>权限管理</span></a>
-                        </li>
-                    </ul>
+            @{
+                if (false)
+                {
+                    <div title="权限管理" style="padding: 10px">
+                    <div style="margin: 5px">
+                        <ul class="tree easyui-tree" data-options="animate:true,lines:true">
+                            <li data-options="iconCls:'icon-group'">
+                                <a href="javascript:void(0)"  data-options="plain:true,iconCls:'icon-add'" onclick="addTab('权限管理','/auth')"><span>权限管理</span></a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
+                }
+            }
             <div title="基础资料管理" style="padding: 10px">
                 <div style="margin: 5px">
                     <ul class="tree easyui-tree" data-options="animate:true,lines:true">

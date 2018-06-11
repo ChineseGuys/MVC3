@@ -10,6 +10,7 @@ using MvcApplication1.Helper;
 
 namespace MvcApplication1.Controllers
 {
+
     public class UserController : Controller
     {
         UserInfoDal userInfo = new UserInfoDal();
@@ -37,7 +38,7 @@ namespace MvcApplication1.Controllers
         public ActionResult Add(User user)
         {
             
-            user.IsActive = 1;
+            user.IsActive = true;
             // MD5加密
             user.Password = SecurityHelper.str2md5(user.Password);
             // 将时间转换为时间戳
