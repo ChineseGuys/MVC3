@@ -14,6 +14,7 @@ namespace MvcApplication1.Controllers
     public class UserController : Controller
     {
         UserInfoDal userInfo = new UserInfoDal();
+        RoleInfoDal roleInfo = new RoleInfoDal();
         //
         // GET: /User/
 
@@ -119,7 +120,7 @@ namespace MvcApplication1.Controllers
         public ActionResult Edit(User user)
         {
             // 受影响的行数（为1，则表示成功）
-            int issuccess = userInfo.Edit(user);
+            int issuccess = userInfo.Edit(user.ID,user.Name,user.Account,user.PhoneNumber);
             if (issuccess == 1)
             {
                 var ret = new
@@ -140,7 +141,60 @@ namespace MvcApplication1.Controllers
         }
 
 
+        /// <summary>
+        /// 为用户分配角色
+        /// </summary>
+        /// <returns></returns>
+        
+        public ActionResult SetUserRoleInfo()
+        {
+            // 接受用户ID
+            int id = int.Parse(Request["id"]);
+            // 查询用户信息
+            var userMsg= userInfo.GetUserInfo(id);
+            //赋值以便在前台显示
+            ViewBag.UserInfo = userMsg;
 
+            // 查询所有角色的信息
+            var roleMsg = roleInfo.GetAll();
+            ViewBag.RoleInfo = roleMsg;
+
+            
+
+            return View();
+        }
+
+        /// <summary>
+        /// 为用户分配角色
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult SetUserRoleInfo(FormCollection collection) 
+        {
+            // 接受用户编号
+            int userId = int.Parse(Request["userId"]);
+            int roleId = Request["ID"] == null ? 0 : int.Parse(Request["ID"]);
+            // 给用户分配角色
+            int issuccess= userInfo.Edit(userId,roleId);
+
+            if (issuccess == 1)
+            {
+                var ret = new
+                {
+                    message = "yes"
+                };
+                // 返回json
+                return Json(ret, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                var ret = new
+                {
+                    message = "no"
+                };
+                return Json(ret, JsonRequestBehavior.AllowGet);
+            }   
+        }
 
     }
 }

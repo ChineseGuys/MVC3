@@ -41,7 +41,7 @@ namespace MvcApplication1.Controllers
         /// <returns></returns>
         public ActionResult Add(Role role) 
         {
-            role.IsActive = 1;
+            role.IsActive = true;
             int issuccess = roleInfoDal.Add(role);
             if (issuccess == 1)
             {
