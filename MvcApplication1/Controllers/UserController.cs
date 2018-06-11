@@ -4,17 +4,19 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MvcApplication1.Models;
-using MvcApplication1.Dal;
 using MvcApplication1.Tools;
 using MvcApplication1.Helper;
+using MvcApplication1.Services;
 
 namespace MvcApplication1.Controllers
 {
 
     public class UserController : Controller
     {
-        UserInfoDal userInfo = new UserInfoDal();
-        RoleInfoDal roleInfo = new RoleInfoDal();
+        //UserInfoDal userInfo = new UserInfoDal();
+        //RoleInfoDal roleInfo = new RoleInfoDal();
+        RoleServices roleInfo = new RoleServices();
+        UserServices userInfo = new UserServices();
         //
         // GET: /User/
 
@@ -32,6 +34,11 @@ namespace MvcApplication1.Controllers
         public ActionResult GetMsg()
         {
             List<User> list = userInfo.GetAll();
+            //foreach (var time in list)
+            //{
+            //    // 将时间戳转换为时间
+            //    time.CreateTime = TimeHelper.GetTime(time.CreateTime.ToString());
+            //}
             //ViewData["msg"] = list;
             return Json(list, JsonRequestBehavior.AllowGet);
         }

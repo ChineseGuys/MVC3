@@ -8,12 +8,10 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace MvcApplication1.Dal
+namespace MvcApplication1.Services
 {
-    public class RoleInfoDal
+    public class RoleServices
     {
-
-
         /// <summary>
         /// 获取角色信息
         /// </summary>
@@ -69,8 +67,5 @@ namespace MvcApplication1.Dal
             };
             return SqlHelper.ExecuteNonQuery(sql, CommandType.Text, para);
         }
-
-
-       
     }
 }

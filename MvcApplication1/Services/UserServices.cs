@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using MvcApplication1.Helper;
 using MvcApplication1.Models;
-using MvcApplication1.Helper;
+using MvcApplication1.Tools;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using MvcApplication1.Tools;
+using System.Linq;
+using System.Web;
 
-namespace MvcApplication1.Dal
+namespace MvcApplication1.Services
 {
-    public class UserInfoDal 
+    public class UserServices
     {
         /// <summary>
         /// 获取用户信息(根据ID获取)
@@ -53,7 +53,7 @@ namespace MvcApplication1.Dal
 
             return list;
         }
-         
+
 
         /* 添加备用
         public int Add(User model)
@@ -149,7 +149,7 @@ namespace MvcApplication1.Dal
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public int Edit(int id,int roleId)
+        public int Edit(int id, int roleId)
         {
             string sql = @"update [User] 
                                set 

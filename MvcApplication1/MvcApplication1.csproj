@@ -103,10 +103,6 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Dal\IRoleInfoDal.cs" />
-    <Compile Include="Dal\IUserInfoDal.cs" />
-    <Compile Include="Dal\RoleInfoDal.cs" />
-    <Compile Include="Dal\UserInfoDal.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -120,6 +116,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthServices.cs" />
     <Compile Include="Services\IAuthServices.cs" />
+    <Compile Include="Services\RoleServices.cs" />
+    <Compile Include="Services\UserServices.cs" />
     <Compile Include="Tools\ConvertHelper.cs" />
     <Compile Include="Tools\SecurityHelper.cs" />
   </ItemGroup>
@@ -1117,6 +1115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Dal\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

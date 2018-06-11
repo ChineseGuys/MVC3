@@ -4,14 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MvcApplication1.Models;
-using MvcApplication1.Dal;
+using MvcApplication1.Services;
 
 namespace MvcApplication1.Controllers
 {
     public class RoleController : Controller
     {
         Role role = new Role();
-        RoleInfoDal roleInfoDal = new RoleInfoDal();
+        RoleServices roleInfoDal = new RoleServices();
+        
         //
         // GET: /Role/
 

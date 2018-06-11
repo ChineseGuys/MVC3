@@ -26,8 +26,8 @@ namespace MvcApplication1.Helper
         /// <returns>Unix时间戳格式</returns>
         public static long ConvertDateTimeInt(System.DateTime time)
         {
-            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
-            return (long)(time - startTime).TotalSeconds;
+            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1,0,0,0));
+            return (long)(time - startTime).TotalMilliseconds;
         }
 
 
@@ -36,12 +36,13 @@ namespace MvcApplication1.Helper
         /// </summary>
         /// <param name="timeStamp">Unix时间戳格式</param>
         /// <returns>C#格式时间</returns>
-        public static DateTime GetTime(string timeStamp)
+        public static long GetTime(string timeStamp)
         {
-            DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
-            long lTime = long.Parse(timeStamp + "0000000");
+            DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1,0,0,0));
+            long lTime = long.Parse(timeStamp);
             TimeSpan toNow = new TimeSpan(lTime);
-            return dtStart.Add(toNow);
+            DateTime targetDt = dtStart.Add(toNow);
+            return Convert.ToInt64(dtStart.Add(toNow));
         }
     }
 }
