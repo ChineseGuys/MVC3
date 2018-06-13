@@ -13,12 +13,24 @@
     <script src="/Content/jquery-easyui-1.5.5.2/jquery.easyui.min.js"></script>
     <script src="/Content/common.js"></script>
     <title></title>
+    <style type="text/css">
+        html{
+            height:100%;
+
+        }
+        body{
+            margin:0;
+            padding:0;
+            border:0;
+            height:100%;
+        }
+    </style>
 </head>
 <body>
     <div style="margin: 10px 0;"></div>
 	
-	<table id="dg" title="权限列表" class="easyui-datagrid" style="width:381px;height:400px"
-			url="/auth/GetAll"
+	<table id="dg" title="权限列表" class="easyui-datagrid" style="width:100%;border:0;margin:0;padding:0;height:100%;"
+            url ="/auth/getall"
 			toolbar="#toolbar" pagination="true"
 			rownumbers="true" fitColumns="true" singleSelect="true">
 		<thead>
@@ -53,6 +65,40 @@
 </html>
 <script type="text/javascript">
     var url;
+    ////初始化查询条件
+    //$(function () {
+    //    InitPagenation();
+    //});
+    /////初始化分页
+    //function InitPagenation() {
+    //    //设置分页控件 
+    //    var p = $('#dg').datagrid('getPager');
+    //    $(p).pagination({
+    //        //pageSize: 10, //每页显示的记录条数，默认为10 
+    //        //pageList: [10, 20, 30], //可以设置每页记录条数的列表 
+    //        onSelectPage: function (pageNumber, pageSize) {
+    //            Query();
+    //        }
+    //    });
+    //}
+
+    //function Query() {
+    //    //var wellNo = $('#inputWellNo').val(); //得到查询关键字--井号
+
+
+    //    var opts = $('#dg').datagrid('options');
+    //    var page = opts.pageNumber + 1; //获取页码
+    //    var pageSize = opts.pageSize; //获取每页多少记录
+    //    var handler = "/auth/GetPagination/?currentPage=" + escape(page);
+        
+    //    //var handler = "Ajax/GetWellListHandler.ashx?wellNo=" + escape(wellNo) + "&page=" + escape(page) + "&pageSize=" + escape(pageSize);
+
+    //    $('#dg').datagrid('options').url = handler; //设置表格数据的来源URL
+    //    //$('#dg').datagrid('reload'); //重新加载表格
+    //}
+
+
+
     function createAuth() {
         $('#dlg').dialog('open').dialog('setTitle', '添加权限');
         $('#fm').form('clear');

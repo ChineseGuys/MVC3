@@ -4,6 +4,7 @@ using MvcApplication1.Tools;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -16,8 +17,11 @@ namespace MvcApplication1.Services
         public List<int> GetRoleAuthByRoleID(int roleID) 
         {
             List<int> intList = new List<int>();
-            string sql = "SELECT * FROM [Role_Auth_Relation] where RoleID="+roleID;
-            var datatable = SqlHelper.ExecuteDataTable(sql, CommandType.Text, null);
+            string sql = "SELECT * FROM [Role_Auth_Relation] where RoleID=@RoleID";
+            SqlParameter[] parameters = {
+                new SqlParameter("@RoleID", roleID),
+            };
+            var datatable = SqlHelper.ExecuteDataTable(sql, CommandType.Text, parameters);
             var result = ConvertHelper.GetEntities<Role_Auth_Relation>(datatable);
             foreach (var item in result)
             {
@@ -29,8 +33,11 @@ namespace MvcApplication1.Services
 
         public int InsertRoleAuth(int roleID, List<int> authIDList) 
         {
-            string del = "DELETE FROM [dbo].[Role_Auth_Relation] WHERE RoleID = " + roleID;
-            SqlHelper.ExecuteNonQuery(del, CommandType.Text, null);
+            string del = "DELETE FROM [dbo].[Role_Auth_Relation] WHERE RoleID =@RoleID ";
+            SqlParameter[] parameters = {
+                new SqlParameter("@RoleID", roleID),
+            };
+            SqlHelper.ExecuteNonQuery(del, CommandType.Text, parameters);
 
             string sql = string.Empty;
             string allSql = string.Empty;

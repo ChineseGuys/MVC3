@@ -22,10 +22,21 @@ namespace MvcApplication1.Controllers
 
         public ActionResult GetAll() 
         {
+            int pageIndex, pageSize;
+            pageIndex = int.Parse(Request["page"]);     //第几页的数据  
+            pageSize = int.Parse(Request["rows"]);  //每页多少条数据  
+            int total = 0;         //返回数据条数总值  
+
             _authServices = new AuthServices();
-            var list = _authServices.GetAll();
-            //return View(list);
-            return Json(list, JsonRequestBehavior.AllowGet);
+            var list = _authServices.GetPagination(pageIndex, pageSize,out total);
+
+            var data = new
+            {
+                total,      //将数据total加载到data中，返回到前台。  
+                rows = list
+            };  
+
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Create(Auth auth) 
