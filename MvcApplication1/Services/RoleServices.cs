@@ -67,5 +67,41 @@ namespace MvcApplication1.Services
             };
             return SqlHelper.ExecuteNonQuery(sql, CommandType.Text, para);
         }
+
+
+        /// <summary>
+        /// 总条数
+        /// </summary>
+        /// <returns></returns>
+        public int getCount()
+        {
+            string sql = "select count(*) from [Role]";
+
+            int count = Convert.ToInt32((SqlHelper.ExecuteScalar(sql, CommandType.Text)));
+            return count;
+        }
+
+        /// <summary>
+        /// 分页列表
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public List<Role> GetList(int pageIndex, int pageSize)
+        {
+            int start = (pageIndex - 1) * pageSize + 1;
+            int end = pageIndex * pageSize;
+            string listSql = "select * from (select row_number() over(order by ID) as num,* from [Role]) as t where t.num>=@start and t.num<=@end";
+            SqlParameter[] pars = { 
+                                 new SqlParameter("@start",start),
+                                 new SqlParameter("@end",end)
+                                 };
+            var datatable = SqlHelper.ExecuteDataTable(listSql, CommandType.Text, pars);
+            var result = ConvertHelper.GetEntities<Role>(datatable).ToList();
+            return result;
+
+
+
+        }
     }
 }

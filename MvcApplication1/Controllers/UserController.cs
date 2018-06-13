@@ -42,6 +42,23 @@ namespace MvcApplication1.Controllers
             //ViewData["msg"] = list;
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+
+
+        /// <summary>
+        /// 分页列表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult PageList()
+        {
+            // 当前页
+            int pageIndex = Request["page"] != null ? int.Parse(Request["page"]) : 1;
+            // 一页显示多少条
+            int pageSize = Request["rows"]!=null?int.Parse(Request["rows"]):5;//int.Parse(Request["rows"]);
+            int sizeCount = userInfo.getCount();
+            //int totalCount= userInfo.getTotalIndex(pageSize);
+            List<User> list = userInfo.GetList(pageIndex, pageSize);
+            return Json(new { rows = list, total = sizeCount }, JsonRequestBehavior.AllowGet);
+        }
         
         /// <summary>
         /// 添加数据

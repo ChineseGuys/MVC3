@@ -39,6 +39,23 @@ namespace MvcApplication1.Controllers
 
 
         /// <summary>
+        /// 分页列表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult PageList()
+        {
+            // 当前页
+            int pageIndex = Request["page"] != null ? int.Parse(Request["page"]) : 1;
+            // 一页显示多少条
+            int pageSize = int.Parse(Request["rows"]);
+            int sizeCount = roleInfoDal.getCount();
+            //int totalCount= userInfo.getTotalIndex(pageSize);
+            List<Role> list = roleInfoDal.GetList(pageIndex, pageSize);
+            return Json(new { rows = list, total = sizeCount }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        /// <summary>
         /// 添加信息
         /// </summary>
         /// <param name="role"></param>

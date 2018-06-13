@@ -164,5 +164,42 @@ namespace MvcApplication1.Services
             return SqlHelper.ExecuteNonQuery(sql, CommandType.Text, para);
 
         }
+
+
+        /// <summary>
+        /// 总条数
+        /// </summary>
+        /// <returns></returns>
+        public int getCount()
+        {
+            string sql = "select count(*) from [User]";
+
+            int count = Convert.ToInt32((SqlHelper.ExecuteScalar(sql, CommandType.Text)));
+            return count;
+        }
+
+
+        /// <summary>
+        /// 分页列表
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public List<User> GetList(int pageIndex, int pageSize)
+        {
+            int start = (pageIndex - 1) * pageSize + 1;
+            int end = pageIndex * pageSize;
+            string listSql = "select * from (select row_number() over(order by ID) as num,* from [User]) as t where t.num>=@start and t.num<=@end";
+            SqlParameter[] pars = { 
+                                 new SqlParameter("@start",start),
+                                 new SqlParameter("@end",end)
+                                 };
+            var datatable = SqlHelper.ExecuteDataTable(listSql, CommandType.Text, pars);
+            var result = ConvertHelper.GetEntities<User>(datatable).ToList();
+            return result;
+
+
+
+        }
     }
 }
