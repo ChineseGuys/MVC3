@@ -26,11 +26,11 @@
 </head>
 <body>
     <div>
-        为用户
+        为角色
         @{
             Role role = (Role)ViewBag.RoleInfo;
             <span style="font-size:28px;color:#f00;"></span> @role.Name
-        }&nbsp;分配角色
+        }&nbsp;分配权限
         <form action="/" method="post">
 
         </form>
@@ -40,11 +40,12 @@
             using (Ajax.BeginForm("SetRoleAuthInfo", new { }, new AjaxOptions() { OnSuccess = "afterSet", HttpMethod = "post" }, new { id = "form1" }))
             {
 
-                //隐藏域用来存储用户ID提交后台
+                // 隐藏域用来存储用户ID提交后台
                 <input type="hidden" name="roleId" value="@role.ID" />
-                //所有权限
+                // 所有权限
                 List<Auth> authInfoList = (List<Auth>)ViewBag.AuthInfo;
 
+                // 当前角色所拥有的权限
                 List<int> authId = ViewBag.AuthIDList;
 
                 string actionID = string.Empty;

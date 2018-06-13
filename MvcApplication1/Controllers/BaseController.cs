@@ -8,6 +8,10 @@ namespace MvcApplication1.Controllers
 {
     public class BaseController : Controller
     {
+        /// <summary>
+        /// 重写OnActionExecuting（）方法，在Action之前执行次方法，实现登录状态的校验
+        /// </summary>
+        /// <param name="filterContext"></param>
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);

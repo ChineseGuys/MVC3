@@ -20,6 +20,10 @@ namespace MvcApplication1.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 分页列表
+        /// </summary>
+        /// <returns></returns>
         public ActionResult GetAll() 
         {
             int pageIndex, pageSize;
@@ -39,6 +43,12 @@ namespace MvcApplication1.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
+
+        /// <summary>
+        /// 添加权限
+        /// </summary>
+        /// <param name="auth"></param>
+        /// <returns></returns>
         public ActionResult Create(Auth auth) 
         {
             _authServices = new AuthServices();
@@ -52,6 +62,11 @@ namespace MvcApplication1.Controllers
 
         }
 
+        /// <summary>
+        /// 修改权限
+        /// </summary>
+        /// <param name="auth"></param>
+        /// <returns></returns>
         public ActionResult Update(Auth auth) 
         {
             _authServices = new AuthServices();

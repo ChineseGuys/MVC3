@@ -14,6 +14,11 @@ namespace MvcApplication1.Services
     {
         public Role_Auth_RelationServices() { }
 
+        /// <summary>
+        /// 获取当前角色所用的权限
+        /// </summary>
+        /// <param name="roleID"></param>
+        /// <returns></returns>
         public List<int> GetRoleAuthByRoleID(int roleID) 
         {
             List<int> intList = new List<int>();
@@ -31,6 +36,13 @@ namespace MvcApplication1.Services
             return intList;
         }
 
+
+        /// <summary>
+        /// 给角色分配权限
+        /// </summary>
+        /// <param name="roleID">角色ID</param>
+        /// <param name="authIDList">权限ID</param>
+        /// <returns></returns>
         public int InsertRoleAuth(int roleID, List<int> authIDList) 
         {
             string del = "DELETE FROM [dbo].[Role_Auth_Relation] WHERE RoleID =@RoleID ";

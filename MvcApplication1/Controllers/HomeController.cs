@@ -13,14 +13,17 @@ namespace MvcApplication1.Controllers
         //
         // GET: /Home/
 
+        
         public ActionResult Index()
         {
             AuthServices authServices = new AuthServices();
             var _userServices = new UserServices();
             List<Auth> authList = null;
+            // 获取当前登录用户的角色
             var dbUser = _userServices.GetAll().Where(p => p.Account == Session["UserName"].ToString() && p.IsActive).FirstOrDefault();
             if (dbUser!=null)
             {
+                // 获取当前角色所拥有的权限
                 authList = authServices.GetUrlByraRelationAndAuth(dbUser.fkRole);
                  
             }

@@ -15,6 +15,11 @@ namespace MvcApplication1.Services
     {
         public AuthServices() {  }
 
+
+        /// <summary>
+        /// 获取权限列表
+        /// </summary>
+        /// <returns></returns>
         public List<Auth> GetAll() 
         {
             string sql = "SELECT * FROM [Auth]";
@@ -23,6 +28,13 @@ namespace MvcApplication1.Services
             return result;
         }
 
+        /// <summary>
+        /// 分页列表
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="Count"></param>
+        /// <returns></returns>
         public List<Auth> GetPagination(int currentPage, int pageSize, out int Count) 
         {
             string all = "SELECT * FROM [Auth]";
@@ -39,6 +51,12 @@ namespace MvcApplication1.Services
             return result;
         }
 
+
+        /// <summary>
+        /// 获取当前角色所有用的权限Url
+        /// </summary>
+        /// <param name="roleID"></param>
+        /// <returns></returns>
         public List<Auth> GetUrlByraRelationAndAuth(int roleID)
         {
             string sql = "select * from [Auth] inner join [Role_Auth_Relation] on Role_Auth_Relation.AuthID=[Auth].ID where Role_Auth_Relation.RoleID=@RoleID";
@@ -50,6 +68,12 @@ namespace MvcApplication1.Services
             return result;
         }
 
+
+        /// <summary>
+        /// 添加权限
+        /// </summary>
+        /// <param name="auth"></param>
+        /// <returns></returns>
         public int Insert(Auth auth)
         {
             string sql = "INSERT [Auth](url) VALUES(@url)";
@@ -57,6 +81,11 @@ namespace MvcApplication1.Services
             return SqlHelper.ExecuteNonQuery(sql, CommandType.Text, parms);
         }
 
+        /// <summary>
+        /// 修改权限
+        /// </summary>
+        /// <param name="auth"></param>
+        /// <returns></returns>
         public int Update(Auth auth) 
         {
             string sql = "UPDATE [Auth] SET Url=@url where ID=@id";

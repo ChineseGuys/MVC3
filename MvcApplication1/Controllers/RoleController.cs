@@ -143,18 +143,23 @@ namespace MvcApplication1.Controllers
             }
         }
 
+        /// <summary>
+        /// 获取当前角色拥有的权限
+        /// </summary>
+        /// <returns></returns>
         public ActionResult SetRoleAuthInfo()
         {
-            // 接受用户ID
+            // 接受角色ID
             int id = int.Parse(Request["id"]);
 
-            // 查询所有角色的信息
+            // 查询当前角色信息
             var roleMsg = roleInfoDal.GetAll().Where(p=>p.ID==id).FirstOrDefault();
             ViewBag.RoleInfo = roleMsg;
-
+            // 查询所有权限信息
             var authMsg = authServices.GetAll();
             ViewBag.AuthInfo = authMsg;
 
+            // 获取当前角色拥有的权限ID
             var authIDList = raRalationServices.GetRoleAuthByRoleID(roleMsg.ID);
             ViewBag.AuthIDList = authIDList;
 
@@ -162,7 +167,7 @@ namespace MvcApplication1.Controllers
         }
 
         /// <summary>
-        /// 为用户分配角色
+        /// 为角色分配权限
         /// </summary>
         /// <returns></returns>
         [HttpPost]
